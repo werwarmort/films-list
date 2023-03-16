@@ -48,7 +48,7 @@ const films = [
     qualities: [qualities.godnota, qualities.alone],
     viewed: 3,
     rate: 9.1,
-    bookmark: false,
+    bookmark: true,
   },
   {
     _id: "1111ca3eefjf6fgeed471815",
