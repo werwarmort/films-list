@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchStatus from "./searchStatus";
 import Film from "./film";
 import api from "../api";
+import Pagination from "./pagination";
 
 const Films = () => {
   const [films, setFilms] = useState(api.films.fetchAll());
@@ -9,6 +10,15 @@ const Films = () => {
   const handleDelete = (filmId) => {
     setFilms(films.filter((item) => item._id != filmId));
   };
+
+  // ======== Пагинация
+  const count = films.length;
+  const pageSize = 8;
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+  const [currentPage, setCurrentPage] = useState(1);
+  // ================
 
   const toggleBookmark = (id) => {
     console.log(id);
@@ -21,6 +31,13 @@ const Films = () => {
       })
     );
   };
+
+  const paginate = (items, pageNumber, pageSize) => {
+    const statrIndex = (pageNumber - 1) * pageSize;
+    return [...items].splice(statrIndex, pageSize);
+  };
+
+  const filmCrop = paginate(films, currentPage, pageSize);
 
   return (
     <>
@@ -45,12 +62,19 @@ const Films = () => {
               films={films}
               onDelete={handleDelete}
               onToggleBookMark={toggleBookmark}
+              filmCrop={filmCrop}
             />
           </tbody>
         </table>
       ) : (
         <h1>no films :(</h1>
       )}
+      <Pagination
+        itemsCount={count}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };

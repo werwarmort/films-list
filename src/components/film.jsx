@@ -2,8 +2,8 @@ import React from "react";
 import BookMark from "./bookmark";
 import Qualitie from "./qualitie";
 
-const Film = ({ films, onDelete, onToggleBookMark }) => {
-  return films.map((film) => (
+const Film = ({ films, onDelete, onToggleBookMark, filmCrop }) => {
+  return filmCrop.map((film) => (
     <tr key={film._id}>
       <td className="fs-6">{film.name}</td>
       <td>
