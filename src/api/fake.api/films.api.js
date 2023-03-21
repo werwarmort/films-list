@@ -202,6 +202,19 @@ const films = [
         bookmark: false
     }
 ];
+
+// const fetchAll = () => {
+//     new Promise((resolve) => {
+//         window.setTimeout(function () {
+//             resolve(films);
+//         }, 1000);
+//     });
+// };
+
+// export default {
+//     fetchAll
+// };
+
 export function fetchAll() {
     return films;
 }
