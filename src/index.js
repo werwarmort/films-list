@@ -7,9 +7,9 @@ import Films from "./components/films";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Films />
-  </React.StrictMode>
+    <React.StrictMode>
+        <Films />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
