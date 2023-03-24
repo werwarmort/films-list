@@ -4,6 +4,7 @@ import Qualitie from "./qualitie";
 import PropTypes from "prop-types";
 
 const Film = ({ films, onDelete, onToggleBookMark, filmCrop }) => {
+    filmCrop.map((item) => console.log(item));
     return filmCrop.map((film) => (
         <tr key={film._id}>
             <td className="fs-6">{film.name}</td>

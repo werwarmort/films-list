@@ -6,42 +6,42 @@ import GroupList from "./groupList";
 import api from "../api";
 
 const Films = () => {
+    // импортируем фильмы асинхронно
     const [films, setFilms] = useState(api.films.fetchAll());
 
-    const handleDelete = (filmId) => {
-        setFilms(films.filter((item) => item._id !== filmId));
-    };
+    useEffect(() => {
+        api.films.fetchAll().then((data) => setFilms(data));
+    }, []);
+    // ==================
 
-    const [selectedGenre, setSelectedGenre] = useState();
-
-    // ======== Пагинация
-
-    const pageSize = 8;
-    const handlePageChange = (pageIndex) => {
-        setCurrentPage(pageIndex);
-    };
-    const [currentPage, setCurrentPage] = useState(1);
-    // ================
-
-    // ======== Фильтрация
-    // setGenres api.genre.fetchAll()
-    const [genres, setGenres] = useState();
-
-    const handleGenreSelect = (item) => {
-        setSelectedGenre(item);
-    };
+    // ======== импортируем жанры асинхронно
+    const [genres, setGenres] = useState(api.genre.fetchAll());
 
     useEffect(() => {
         api.genre.fetchAll().then((data) => setGenres(data));
     }, []);
 
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [selectedGenre]);
     // ================
 
+    const handleDelete = (filmId) => {
+        setFilms(films.filter((item) => item._id !== filmId));
+    };
+
+    // ======== Пагинация
+    const pageSize = 8;
+    const handlePageChange = (pageIndex) => {
+        setCurrentPage(pageIndex);
+    };
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const paginate = (items, pageNumber, pageSize) => {
+        const statrIndex = (pageNumber - 1) * pageSize;
+        return [...items].splice(statrIndex, pageSize);
+    };
+    // ================
+
+    // ============== закладки (НЕ РАБОТАЮТ!)
     const toggleBookmark = (id) => {
-        console.log(id);
         setFilms(
             films.map((film) => {
                 if (film._id === id) {
@@ -51,15 +51,15 @@ const Films = () => {
             })
         );
     };
+    // ==============
 
-    const paginate = (items, pageNumber, pageSize) => {
-        const statrIndex = (pageNumber - 1) * pageSize;
-        return [...items].splice(statrIndex, pageSize);
-    };
+    // ============== Фильтрация
+    const [selectedGenre, setSelectedGenre] = useState();
 
     const filteredFilms = selectedGenre
         ? films.filter((film) => film.genereOfFilm === selectedGenre)
         : films;
+
     const count = filteredFilms.length;
     const filmCrop = paginate(filteredFilms, currentPage, pageSize);
 
@@ -67,8 +67,17 @@ const Films = () => {
         setSelectedGenre();
     };
 
+    const handleGenreSelect = (item) => {
+        setSelectedGenre(item);
+    };
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedGenre]);
+    // ==============
+
     return (
-        <div className="d-flex">
+        <div className="d-flex justify-content-center">
             {genres && (
                 <div className="d-flex flex-column flex-shrink-0 p-3">
                     <GroupList

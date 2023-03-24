@@ -203,18 +203,17 @@ const films = [
     }
 ];
 
-// const fetchAll = () => {
-//     new Promise((resolve) => {
-//         window.setTimeout(function () {
-//             resolve(films);
-//         }, 1000);
-//     });
-// };
+const fetchAll = () =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(films);
+        }, 1000);
+    });
 
-// export default {
-//     fetchAll
-// };
+export default {
+    fetchAll
+};
 
-export function fetchAll() {
-    return films;
-}
+// export function fetchAll() {
+//     return films;
+// }
