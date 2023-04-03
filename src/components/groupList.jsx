@@ -8,10 +8,26 @@ const GroupList = ({
     onItemSelect,
     selectedItem
 }) => {
-    // items.map((item) => console.log(item.genereOfFilm));
-    // Object.keys(items).map((item) => console.log(item));
-
-    if (!Array.isArray(items)) {
+    if (Array.isArray(items)) {
+        console.log("items is mass: ", items);
+        return (
+            <ul className="list-group">
+                {items.map((item) => (
+                    <li
+                        key={item._id}
+                        className={
+                            "list-group-item" +
+                            (item === selectedItem ? " active" : "")
+                        }
+                        onClick={() => onItemSelect(item)}
+                        role="button"
+                    >
+                        {item.name}
+                    </li>
+                ))}
+            </ul>
+        );
+    } else {
         return (
             <ul className="list-group">
                 {Object.keys(items).map((item) => (
@@ -30,55 +46,6 @@ const GroupList = ({
             </ul>
         );
     }
-    return (
-        <ul className="list-group">
-            {items.map((item) => (
-                <li
-                    key={item[valueProperty]}
-                    className={
-                        "list-group-item" +
-                        (item === selectedItem ? " active" : "")
-                    }
-                    onClick={() => onItemSelect(item)}
-                    role="button"
-                >
-                    {item[contentProperty]}
-                </li>
-            ))}
-        </ul>
-    );
-
-    // return (
-    //     <ul className="list-group">
-    //         {Array.isArray(items) === false
-    //             ? Object.keys(items).map((item) => (
-    //                   <li
-    //                       key={items[item][valueProperty]}
-    //                       className={
-    //                           "list-group-item" +
-    //                           (items[item] === selectedItem ? " active" : "")
-    //                       }
-    //                       onClick={() => onItemSelect(items[item])}
-    //                       role="button"
-    //                   >
-    //                       {items[item][contentProperty]}
-    //                   </li>
-    //               ))
-    //             : items.map((item) => (
-    //                   <li
-    //                       key={item[valueProperty]}
-    //                       className={
-    //                           "list-group-item" +
-    //                           (item === selectedItem ? " active" : "")
-    //                       }
-    //                       onClick={() => onItemSelect(item)}
-    //                       role="button"
-    //                   >
-    //                       {item[contentProperty]}
-    //                   </li>
-    //               ))}
-    //     </ul>
-    // );
 };
 
 GroupList.defaultProps = {
@@ -91,7 +58,7 @@ GroupList.propTypes = {
     valueProperty: PropTypes.string.isRequired,
     contentProperty: PropTypes.string.isRequired,
     onItemSelect: PropTypes.func,
-    selectedItem: PropTypes.object
+    selectedItem: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };
 
 export default GroupList;

@@ -1,4 +1,4 @@
-import { genre } from "./genre.api";
+import { genre2 as genre } from "./genre.api";
 
 const qualities = {
     long: {
@@ -215,5 +215,5 @@ export default {
 };
 
 // export function fetchAll() {
-//     return films;
+// return films;
 // }

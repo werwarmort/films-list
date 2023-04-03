@@ -15,18 +15,19 @@ const Film = ({ films, onDelete, onToggleBookMark, filmCrop }) => {
             <td className="text-center">{film.viewed}</td>
             <td className="text-center">{film.rate}</td>
             <td className="text-center">
-                <BookMark
+                {/* <BookMark
                     status={film.bookmark}
-                    onClick={() => onToggleBookMark(film._id)}
-                />
+                    onToggleBookMark={onToggleBookMark}
+                    filmId={film.id}
+                /> */}
             </td>
             <td>
-                <button
+                {/* <button
                     className="text-light btn bg-danger"
                     onClick={() => onDelete(film._id)}
                 >
                     delete
-                </button>
+                </button> */}
             </td>
         </tr>
     ));
