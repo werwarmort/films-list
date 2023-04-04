@@ -1,9 +1,10 @@
 import React from "react";
-// import Film from "./film";
 import PropTypes from "prop-types";
-import TableHeader from "./tableHeader";
-import TableBody from "./tableBody";
+// import TableHeader from "./tableHeader";
+// import TableBody from "./tableBody";
 import BookMark from "./bookmark";
+import Qualitie from "./qualitie";
+import Table from "./table";
 
 const FilmsTable = ({
     films,
@@ -15,7 +16,10 @@ const FilmsTable = ({
 }) => {
     const columns = {
         name: { path: "name", name: "Имя" },
-        qualities: { name: "Kачества" },
+        qualities: {
+            name: "Kачества",
+            component: (film) => <Qualitie film={film} />
+        },
         films: { path: "genereOfFilm.name", name: "Жанр" },
         viewed: { path: "viewed", name: "к-во просмотров" },
         rate: { path: "rate", name: "оценка" },
@@ -41,19 +45,19 @@ const FilmsTable = ({
             )
         }
     };
+
     return (
-        <table className="table">
-            <TableHeader {...{ onSort, selectedSort, columns }} />
-            <TableBody {...{ columns, data: films }} />
-            {/* <tbody>
-                <Film
-                    films={films}
-                    onDelete={onDelete}
-                    onToggleBookMark={onToggleBookMark}
-                    filmCrop={filmCrop}
-                />
-            </tbody> */}
-        </table>
+        // <Table>
+        //     <TableHeader {...{ onSort, selectedSort, columns }} />
+        //     <TableBody {...{ columns, data: films }} />
+        // </Table>
+
+        <Table
+            onSort={onSort}
+            selectedSort={selectedSort}
+            columns={columns}
+            data={films}
+        />
     );
 };
 

@@ -9,7 +9,6 @@ const GroupList = ({
     selectedItem
 }) => {
     if (Array.isArray(items)) {
-        console.log("items is mass: ", items);
         return (
             <ul className="list-group">
                 {items.map((item) => (
