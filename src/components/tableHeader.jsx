@@ -13,6 +13,29 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
         }
     };
 
+    // const setArrow = (col) => {
+    //     Object.keys(columns).map((column) => {
+    //         if (
+    //             columns[column].name === col &&
+    //             columns[column].name !== "Kачества" &&
+    //             columns[column].name !== undefined
+    //         ) {
+    //             console.log(columns[column].name);
+    //             return <i className="bi bi-caret-down-fill"></i>;
+    //         }
+    //     });
+    // };
+
+    const renderSortArrow = (selectedSort, currentPath) => {
+        if (selectedSort.path === currentPath) {
+            if (selectedSort.order === "asc") {
+                return <i className="bi bi-caret-down-fill"></i>;
+            } else {
+                return <i className="bi bi-caret-up-fill"></i>;
+            }
+        }
+    };
+
     return (
         <thead>
             <tr>
@@ -29,26 +52,9 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         className="unselectable"
                     >
                         {columns[column].name}
+                        {renderSortArrow(selectedSort, columns[column].path)}
                     </th>
                 ))}
-
-                {/* <th scope="col">Качества</th>
-                <th onClick={() => handleSort("genereOfFilm.name")} scope="col">
-                    Жанр
-                </th>
-                <th onClick={() => handleSort("viewed")} scope="col">
-                    просмотрел
-                </th>
-                <th
-                    onClick={() => handleSort("rate")}
-                    className="text-center"
-                    scope="col"
-                >
-                    оценка
-                </th>
-                <th onClick={() => handleSort("bookmark")} scope="col">
-                    закладки
-                </th> */}
             </tr>
         </thead>
     );

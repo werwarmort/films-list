@@ -15,17 +15,23 @@ const FilmsTable = ({
     selectedSort
 }) => {
     const columns = {
-        name: { path: "name", name: "Имя" },
+        name: { path: "name", name: "Имя", arrowDirection: "none" },
         qualities: {
             name: "Kачества",
+            arrowDirection: "none",
             component: (film) => <Qualitie film={film} />
         },
-        films: { path: "genereOfFilm.name", name: "Жанр" },
-        viewed: { path: "viewed", name: "к-во просмотров" },
-        rate: { path: "rate", name: "оценка" },
+        films: {
+            path: "genereOfFilm.name",
+            name: "Жанр",
+            arrowDirection: "none"
+        },
+        viewed: { path: "viewed", name: "vived(Раз)", arrowDirection: "none" },
+        rate: { path: "rate", name: "оценка", arrowDirection: "none" },
         bookmark: {
             path: "bookmark",
             name: "избранное",
+            arrowDirection: "none",
             component: (film) => (
                 <BookMark
                     status={film.bookmark}
