@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import SearchStatus from "./searchStatus";
-import Pagination from "./pagination";
-import GroupList from "./groupList";
-import api from "../api";
-import FilmsTable from "./filmsTable";
+import SearchStatus from "../searchStatus";
+import Pagination from "../pagination";
+import GroupList from "../groupList";
+import api from "../../api";
+import FilmsTable from "../filmsTable";
 import _ from "lodash";
 
 const Films = () => {

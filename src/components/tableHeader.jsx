@@ -13,19 +13,6 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
         }
     };
 
-    // const setArrow = (col) => {
-    //     Object.keys(columns).map((column) => {
-    //         if (
-    //             columns[column].name === col &&
-    //             columns[column].name !== "Kачества" &&
-    //             columns[column].name !== undefined
-    //         ) {
-    //             console.log(columns[column].name);
-    //             return <i className="bi bi-caret-down-fill"></i>;
-    //         }
-    //     });
-    // };
-
     const renderSortArrow = (selectedSort, currentPath) => {
         if (selectedSort.path === currentPath) {
             if (selectedSort.order === "asc") {

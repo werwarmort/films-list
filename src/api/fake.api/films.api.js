@@ -210,8 +210,16 @@ const fetchAll = () =>
         }, 1000);
     });
 
+const getById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(films.find((user) => user._id === id));
+        }, 500);
+    });
+
 export default {
-    fetchAll
+    fetchAll,
+    getById
 };
 
 // export function fetchAll() {

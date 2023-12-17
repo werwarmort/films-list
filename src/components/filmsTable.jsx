@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import BookMark from "./bookmark";
 import Qualitie from "./qualitie";
 import Table from "./table";
+import { Link } from "react-router-dom";
 
 const FilmsTable = ({
     films,
@@ -15,7 +16,14 @@ const FilmsTable = ({
     selectedSort
 }) => {
     const columns = {
-        name: { path: "name", name: "Имя", arrowDirection: "none" },
+        name: {
+            path: "name",
+            name: "Имя",
+            arrowDirection: "none",
+            component: (film) => (
+                <Link to={`/films/${film._id}`}>{film.name}</Link>
+            )
+        },
         qualities: {
             name: "Kачества",
             arrowDirection: "none",
